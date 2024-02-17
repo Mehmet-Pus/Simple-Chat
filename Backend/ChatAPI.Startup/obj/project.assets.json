@@ -107,6 +107,43 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "ChatAPI.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/ChatAPI.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChatAPI.Core.dll": {}
+        }
+      },
+      "ChatAPI.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "ChatAPI.Core": "1.0.0",
+          "ChatAPI.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ChatAPI.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChatAPI.Data.dll": {}
+        }
+      },
+      "ChatAPI.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "ChatAPI.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ChatAPI.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChatAPI.Domain.dll": {}
+        }
       }
     }
   },
@@ -460,10 +497,28 @@
         "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "ChatAPI.Core/1.0.0": {
+      "type": "project",
+      "path": "../ChatAPI.Core/ChatAPI.Core.csproj",
+      "msbuildProject": "../ChatAPI.Core/ChatAPI.Core.csproj"
+    },
+    "ChatAPI.Data/1.0.0": {
+      "type": "project",
+      "path": "../ChatAPI.Data/ChatAPI.Data.csproj",
+      "msbuildProject": "../ChatAPI.Data/ChatAPI.Data.csproj"
+    },
+    "ChatAPI.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ChatAPI.Domain/ChatAPI.Domain.csproj",
+      "msbuildProject": "../ChatAPI.Domain/ChatAPI.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "ChatAPI.Core >= 1.0.0",
+      "ChatAPI.Data >= 1.0.0",
+      "ChatAPI.Domain >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.14",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
@@ -492,7 +547,17 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Core/ChatAPI.Core.csproj": {
+              "projectPath": "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Core/ChatAPI.Core.csproj"
+            },
+            "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Data/ChatAPI.Data.csproj": {
+              "projectPath": "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Data/ChatAPI.Data.csproj"
+            },
+            "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Domain/ChatAPI.Domain.csproj": {
+              "projectPath": "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Domain/ChatAPI.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
