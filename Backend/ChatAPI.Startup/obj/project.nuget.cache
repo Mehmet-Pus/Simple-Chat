@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nF9S0yG2N1xxdOmXoG7twj6gKva3GVJ4rG5TKoZGxu1tzHi/JayvQlouoMZQmZo0avlWK0+oZgrokLKJ94YzEA==",
+  "dgSpecHash": "2XXCrI5kwwca8ssuQS/d92Zjmi95ygVSo0N79qq/hfQuieF4EbivdyI6eliU3tXgBO6O79TU1/Nitqa7bWb4oQ==",
   "success": true,
   "projectFilePath": "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Startup/ChatAPI.Startup.csproj",
   "expectedPackageFiles": [

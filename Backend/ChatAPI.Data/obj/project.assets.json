@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "ChatAPI.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/ChatAPI.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChatAPI.Core.dll": {}
+        }
+      },
+      "ChatAPI.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "ChatAPI.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ChatAPI.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChatAPI.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ChatAPI.Core/1.0.0": {
+      "type": "project",
+      "path": "../ChatAPI.Core/ChatAPI.Core.csproj",
+      "msbuildProject": "../ChatAPI.Core/ChatAPI.Core.csproj"
+    },
+    "ChatAPI.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ChatAPI.Domain/ChatAPI.Domain.csproj",
+      "msbuildProject": "../ChatAPI.Domain/ChatAPI.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "ChatAPI.Core >= 1.0.0",
+      "ChatAPI.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/Users/j3luelarck/.nuget/packages/": {}
@@ -31,7 +69,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Core/ChatAPI.Core.csproj": {
+              "projectPath": "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Core/ChatAPI.Core.csproj"
+            },
+            "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Domain/ChatAPI.Domain.csproj": {
+              "projectPath": "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Domain/ChatAPI.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

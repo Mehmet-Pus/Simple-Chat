@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ChatAPI.Core\ChatAPI.Core.csproj" />
+      <ProjectReference Include="..\ChatAPI.Domain\ChatAPI.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
