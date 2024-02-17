@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "nF9S0yG2N1xxdOmXoG7twj6gKva3GVJ4rG5TKoZGxu1tzHi/JayvQlouoMZQmZo0avlWK0+oZgrokLKJ94YzEA==",
+  "success": true,
+  "projectFilePath": "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Startup/ChatAPI.Startup.csproj",
+  "expectedPackageFiles": [
+    "/Users/j3luelarck/.nuget/packages/microsoft.aspnetcore.openapi/7.0.14/microsoft.aspnetcore.openapi.7.0.14.nupkg.sha512",
+    "/Users/j3luelarck/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/j3luelarck/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/j3luelarck/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/Users/j3luelarck/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/Users/j3luelarck/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/Users/j3luelarck/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
