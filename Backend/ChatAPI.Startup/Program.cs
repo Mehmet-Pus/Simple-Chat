@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//custom configuration of settings
+//custom config
 builder.Services.Configure<PersistenceSettings>(builder.Configuration.GetSection("PersistenceSettings"));
 //Db register
 builder.Services.AddDbContext<ChatAppDbContext>(o => o.UseNpgsql(@builder.Configuration.GetSection("PersistenceSettings")[""], 
@@ -27,7 +27,7 @@ providerOptions.GetConnectionString();
 
 
 
-//dependency injection for once, making it available during the course of the app
+//dependency injection
 builder.Services.AddSingleton<PersistenceSettings>();
 
 
