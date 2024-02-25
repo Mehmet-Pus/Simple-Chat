@@ -10,9 +10,4 @@
       <ProjectReference Include="..\ChatAPI.Core\ChatAPI.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0" />
-    </ItemGroup>
-
 </Project>

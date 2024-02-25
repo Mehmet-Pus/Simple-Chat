@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore.Query.Internal;
+
 namespace ChatAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,5 +15,11 @@ public class ChatAppDbContext : DbContext
     {
         
     }
+
+    public ChatAppDbContext(DbContextOptions<ChatAppDbContext> options) : base(options)
+    {
+        
+    }
+ 
     
 }

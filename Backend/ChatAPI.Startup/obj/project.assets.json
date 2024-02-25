@@ -395,10 +395,6 @@
       "ChatAPI.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.0",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.0"
-        },
         "compile": {
           "bin/placeholder/ChatAPI.Core.dll": {}
         },
@@ -426,9 +422,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "ChatAPI.Core": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "7.0.0",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.0"
+          "ChatAPI.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/ChatAPI.Domain.dll": {}

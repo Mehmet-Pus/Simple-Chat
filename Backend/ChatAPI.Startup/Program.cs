@@ -1,6 +1,7 @@
 using ChatAPI.Data;
 using ChatAPI.Startup;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,10 +14,19 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //custom configuration of settings
-builder.Services.Configure<PersistenceSettings>(builder.Configuration.GetSection("connectionString"));
+builder.Services.Configure<PersistenceSettings>(builder.Configuration.GetSection("PersistenceSettings"));
 //Db register
-builder.Services.AddDbContext<ChatAppDbContext>(o => o.UseNpgsql(@builder.Configuration.GetSection("PersistenceSettings")["connectionString"], 
+builder.Services.AddDbContext<ChatAppDbContext>(o => o.UseNpgsql(@builder.Configuration.GetSection("PersistenceSettings")[""], 
     b => b.MigrationsAssembly("ChatAPI.Data")));
+
+
+var serviceProvider = builder.Services.BuildServiceProvider();
+var providerOptions = serviceProvider.GetService<IOptions<PersistenceSettings>>()?.Value ??
+                      throw new InvalidOperationException("The persistence provider options cannot be null.");
+providerOptions.GetConnectionString();
+
+
+
 //dependency injection for once, making it available during the course of the app
 builder.Services.AddSingleton<PersistenceSettings>();
 
