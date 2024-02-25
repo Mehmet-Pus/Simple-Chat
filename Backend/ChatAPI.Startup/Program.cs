@@ -1,3 +1,4 @@
+using ChatAPI.Core;
 using ChatAPI.Data;
 using ChatAPI.Startup;
 using Microsoft.EntityFrameworkCore;
@@ -15,15 +16,14 @@ builder.Services.AddSwaggerGen();
 
 //custom config
 builder.Services.Configure<PersistenceSettings>(builder.Configuration.GetSection("PersistenceSettings"));
-//Db register
-builder.Services.AddDbContext<ChatAppDbContext>(o => o.UseNpgsql(@builder.Configuration.GetSection("PersistenceSettings")[""], 
-    b => b.MigrationsAssembly("ChatAPI.Data")));
-
 
 var serviceProvider = builder.Services.BuildServiceProvider();
 var providerOptions = serviceProvider.GetService<IOptions<PersistenceSettings>>()?.Value ??
                       throw new InvalidOperationException("The persistence provider options cannot be null.");
-providerOptions.GetConnectionString();
+
+//Db register
+builder.Services.AddDbContext<ChatAppDbContext>(o => o.UseNpgsql(providerOptions.GetConnectionString(), 
+    b => b.MigrationsAssembly("ChatAPI.Data")));
 
 
 

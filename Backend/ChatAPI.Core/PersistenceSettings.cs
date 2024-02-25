@@ -1,4 +1,4 @@
-namespace ChatAPI.Startup;
+namespace ChatAPI.Core;
 
 
 public record PersistenceSettings
