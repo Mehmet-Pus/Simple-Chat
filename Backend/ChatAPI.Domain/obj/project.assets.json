@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
-      "ChatAPI.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/ChatAPI.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ChatAPI.Core.dll": {}
-        }
-      }
-    }
+    "net7.0": {}
   },
-  "libraries": {
-    "ChatAPI.Core/1.0.0": {
-      "type": "project",
-      "path": "../ChatAPI.Core/ChatAPI.Core.csproj",
-      "msbuildProject": "../ChatAPI.Core/ChatAPI.Core.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net7.0": [
-      "ChatAPI.Core >= 1.0.0"
-    ]
+    "net7.0": []
   },
   "packageFolders": {
     "/Users/j3luelarck/.nuget/packages/": {}
@@ -50,11 +31,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Core/ChatAPI.Core.csproj": {
-              "projectPath": "/Users/j3luelarck/Documents/CS Projects/Projects/Simple-Chat/Backend/ChatAPI.Core/ChatAPI.Core.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
