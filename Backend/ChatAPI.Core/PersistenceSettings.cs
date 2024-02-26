@@ -1,6 +1,5 @@
 namespace ChatAPI.Core;
 
-
 public record PersistenceSettings
 {
     public string ConnectionStringTemplate { get; set; } = default!;
@@ -22,5 +21,4 @@ public record PersistenceSettings
 
         return connectionString;
     }
-    
 }
