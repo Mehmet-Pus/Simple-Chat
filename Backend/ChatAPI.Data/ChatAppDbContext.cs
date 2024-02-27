@@ -29,7 +29,7 @@ public class ChatAppDbContext : DbContext
             .Property(x => x.ChatRoomId)
             .IsRequired();
         modelBuilder.Entity<Message>()
-            .HasMany<ChatRoom>(x => x.ChatRooms)
+            .HasOne<ChatRoom>(x => x.ChatRoom)
             .WithMany(x => x.Messages);
 
         modelBuilder.Entity<ChatRoomUser>()
@@ -40,21 +40,22 @@ public class ChatAppDbContext : DbContext
             .IsRequired();
         modelBuilder.Entity<ChatRoomUser>()
             .Property(x => x.Description)
-            .IsRequired();
+            .HasMaxLength(20);
         modelBuilder.Entity<ChatRoomUser>()
-            .HasMany<ChatRoom>(x => x.ChatRooms)
+            .HasOne<ChatRoom>(x => x.ChatRoom)
             .WithMany(x => x.ChatRoomUsers);
 
         modelBuilder.Entity<ChatRoom>()
             .Property(x => x.Name)
+            .HasMaxLength(20)
             .IsRequired();
         modelBuilder.Entity<ChatRoom>()
             .Property(x => x.IsPrivateChat);
         modelBuilder.Entity<ChatRoom>()
             .Property(x => x.IsOneToOneChat);
         modelBuilder.Entity<ChatRoom>()
-            .HasMany<ChatRoomUser>(x => x.ChatRoomUsers)
-            .WithMany(x => x.ChatRooms);
+            .HasMany<ChatRoomUser>(x => x.ChatRoomUsers);
+            //.WithMany(x => x.User Sender will be implemented later);
             
         base.OnModelCreating(modelBuilder);
     }
