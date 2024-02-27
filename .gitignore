@@ -489,4 +489,5 @@ obj/
 bin/
 Backend/ChatAPI.*/obj/
 Backend/ChatAPI.Domain/obj/*
+rider.project.*
 
