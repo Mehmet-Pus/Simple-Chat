@@ -487,4 +487,5 @@ $RECYCLE.BIN/
 .idea/
 obj/
 bin/
+Backend/ChatAPI.*/obj/
 
