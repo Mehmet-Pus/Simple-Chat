@@ -1,3 +1,5 @@
+using ChatAPI.Core;
+
 namespace ChatAPI.Data.Models;
 
 public class ChatRoom : BaseEntity
