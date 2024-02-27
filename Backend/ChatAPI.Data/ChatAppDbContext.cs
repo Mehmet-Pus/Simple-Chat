@@ -5,10 +5,16 @@ namespace ChatAPI.Data;
 
 public class ChatAppDbContext : DbContext
 {
+    public DbSet<Message> Messages { get; set; }
+    public DbSet<ChatRoom> ChatRooms { get; set; }
+    public DbSet<ChatRoomUser> ChatRoomUsers { get; set; }
     public ChatAppDbContext(
-        DbContextOptions<ChatAppDbContext> options)
+        DbContextOptions<ChatAppDbContext> options, DbSet<Message> messages, DbSet<ChatRoom> chatRooms, DbSet<ChatRoomUser> chatRoomUsers)
     : base(options)
     {
+        Messages = messages;
+        ChatRooms = chatRooms;
+        ChatRoomUsers = chatRoomUsers;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
