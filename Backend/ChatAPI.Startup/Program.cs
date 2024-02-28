@@ -1,7 +1,10 @@
+using System.Text;
 using ChatAPI.Core;
 using ChatAPI.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,20 +14,39 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//custom config
+//custom config for Persistence Settings
 builder.Services.Configure<PersistenceSettings>(builder.Configuration.GetSection("PersistenceSettings"));
 
 var serviceProvider = builder.Services.BuildServiceProvider();
 var providerOptions = serviceProvider.GetService<IOptions<PersistenceSettings>>()?.Value ??
     throw new InvalidOperationException("The persistence provider options cannot be null.");
+//Jwt Part
+var providerOptions2 = serviceProvider.GetService<IOptions<AuthenticationSettings>>()?.Value ??
+                       throw new InvalidOperationException("error");
+var key = Encoding.ASCII.GetBytes(providerOptions2.GetJwtSetting());
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 //Db register
 builder.Services.AddDbContext<ChatAppDbContext>(
     o => o.UseNpgsql(providerOptions.GetConnectionString(),
     b => b.MigrationsAssembly("ChatAPI.Data")));
 
-//dependency injection
-builder.Services.AddSingleton<PersistenceSettings>();
 
 var app = builder.Build();
 

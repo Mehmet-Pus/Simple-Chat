@@ -1,0 +1,58 @@
+using ChatAPI.Core;
+using ChatAPI.Data;
+using ChatAPI.Startup.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ChatAPI.Startup.Controllers;
+
+[AllowAnonymous]
+[Route("[controller]")]
+[ApiController]
+public class AuthController : ControllerBase
+{
+    private readonly UserManager<Users> _userManager;
+    private readonly SignInManager<Users> _signInManager;
+    private readonly ITokenService _tokenService;
+
+    public AuthController(
+        UserManager<Users> userManager,
+        SignInManager<Users> signInManager,
+        ITokenService tokenService)
+    {
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _tokenService = tokenService;
+    }
+
+    
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginInputModel model)
+    {
+        var user = await _userManager.FindByNameAsync(model.UserName);
+        
+
+        if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+        {
+            var roles = await _userManager.GetRolesAsync(user);
+            var token = _tokenService.GenerateToken(user, roles);
+
+            return Ok(new { Token = token });
+        }
+
+        return Unauthorized();
+    }
+    
+    [HttpPost("register")]
+    public async Task<IActionResult> Register(RegisterInputModel model)
+    {
+        var appUser = new Users();
+        appUser.UserName = model.UserName;
+        appUser.Email = model.Email;
+        var user = await _userManager.CreateAsync(appUser, model.Password);
+
+        return Ok();
+    }
+    
+}
