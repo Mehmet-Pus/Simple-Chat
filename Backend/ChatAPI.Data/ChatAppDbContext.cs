@@ -9,12 +9,9 @@ public class ChatAppDbContext : DbContext
     public DbSet<ChatRoom> ChatRooms { get; set; }
     public DbSet<ChatRoomUser> ChatRoomUsers { get; set; }
     public ChatAppDbContext(
-        DbContextOptions<ChatAppDbContext> options, DbSet<Message> messages, DbSet<ChatRoom> chatRooms, DbSet<ChatRoomUser> chatRoomUsers)
+        DbContextOptions<ChatAppDbContext> options)
     : base(options)
     {
-        Messages = messages;
-        ChatRooms = chatRooms;
-        ChatRoomUsers = chatRoomUsers;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
