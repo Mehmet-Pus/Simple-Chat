@@ -12,9 +12,10 @@ public record  AuthenticationSettings
     {
         if (JwtTemplate == null)
             throw new ArgumentException($"{nameof(AuthenticationSettings)} {nameof(JwtTemplate)} cannot be null");
-
+//Jwt Template is null, will work on it tomorrow!
+        
         var jwtTemplate = JwtTemplate
-            .Replace("{secretKey}", SecretKey, StringComparison.OrdinalIgnoreCase)
+            .Replace("{secretkey}", SecretKey, StringComparison.OrdinalIgnoreCase)
             .Replace("{issuer}", Issuer, StringComparison.OrdinalIgnoreCase)
             .Replace("{audience}", Audience, StringComparison.OrdinalIgnoreCase)
             .Replace("{durationinminutes}", DurationInMinutes, StringComparison.OrdinalIgnoreCase);
