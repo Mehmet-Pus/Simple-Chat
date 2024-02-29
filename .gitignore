@@ -482,3 +482,12 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+#ignore extra files
+.idea/
+obj/
+bin/
+Backend/ChatAPI.*/obj/
+Backend/ChatAPI.Domain/obj/*
+rider.project.*
+
