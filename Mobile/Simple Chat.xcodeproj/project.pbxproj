@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB33F65E2B91BE6600A4A701 /* Simple-Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Simple-Chat-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BB6864B72B91B923007DAD40 /* Simple Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB6864BA2B91B923007DAD40 /* Simple_ChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simple_ChatApp.swift; sourceTree = "<group>"; };
 		BB6864BC2B91B923007DAD40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		BB6864B92B91B923007DAD40 /* Simple Chat */ = {
 			isa = PBXGroup;
 			children = (
+				BB33F65E2B91BE6600A4A701 /* Simple-Chat-Info.plist */,
 				BB6864BA2B91B923007DAD40 /* Simple_ChatApp.swift */,
 				BB6864BC2B91B923007DAD40 /* ContentView.swift */,
 				BB6864BE2B91B923007DAD40 /* Item.swift */,
@@ -429,6 +431,7 @@
 				DEVELOPMENT_TEAM = PALQAW7PF2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Simple-Chat-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -458,6 +461,7 @@
 				DEVELOPMENT_TEAM = PALQAW7PF2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Simple-Chat-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
