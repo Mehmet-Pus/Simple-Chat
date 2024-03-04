@@ -1,5 +1,5 @@
-using ChatAPI.Core;
-using ChatAPI.Data;
+using ChatAPI.Core.Models;
+using ChatAPI.Data.Models;
 using ChatAPI.Startup.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -50,6 +50,7 @@ public class AuthController : ControllerBase
         var appUser = new Users();
         appUser.UserName = model.UserName;
         appUser.Email = model.Email;
+        appUser.DisplayName = model.DisplayName;
         var user = await _userManager.CreateAsync(appUser, model.Password);
 
         return Ok();

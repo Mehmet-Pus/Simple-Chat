@@ -1,4 +1,4 @@
-namespace ChatAPI.Core;
+namespace ChatAPI.Core.Models;
 
 public class LoginInputModel
 {

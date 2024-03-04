@@ -1,6 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
-namespace ChatAPI.Data;
+namespace ChatAPI.Data.Models;
 
 public class Users : IdentityUser<int>
 {
@@ -8,7 +9,7 @@ public class Users : IdentityUser<int>
     {
         DisplayName = default!;
     }
-    //Id, UserName,Password and Email will come from base class in dotnet
     
+    [MaxLength(20)]
     public string DisplayName { get; set; }
 }

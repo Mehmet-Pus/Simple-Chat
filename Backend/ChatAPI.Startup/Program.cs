@@ -1,7 +1,10 @@
 using System.Text;
-using ChatAPI.Core;
+using ChatAPI.Core.Settings;
 using ChatAPI.Data;
+using ChatAPI.Data.Models;
+using ChatAPI.Startup.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -14,16 +17,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//custom config for Persistence Settings
+//Dependency Injection for AuthController and TokenService
+builder.Services.AddTransient<ITokenService, TokenService>();
+builder.Services.AddIdentity<Users, UserRole>()
+    .AddEntityFrameworkStores<ChatAppDbContext>()
+    .AddDefaultTokenProviders();
+
+//custom config for Persistence and Auth Settings
 builder.Services.Configure<PersistenceSettings>(builder.Configuration.GetSection("PersistenceSettings"));
+builder.Services.Configure<AuthenticationSettings>(builder.Configuration.GetSection("AuthenticationSettings"));
 
 var serviceProvider = builder.Services.BuildServiceProvider();
 var providerOptions = serviceProvider.GetService<IOptions<PersistenceSettings>>()?.Value ??
     throw new InvalidOperationException("The persistence provider options cannot be null.");
 //Jwt Part
-var providerOptions2 = serviceProvider.GetService<IOptions<AuthenticationSettings>>()?.Value ??
+var authOptions = serviceProvider.GetService<IOptions<AuthenticationSettings>>()?.Value ??
                        throw new InvalidOperationException("error");
-var key = Encoding.ASCII.GetBytes(providerOptions2.GetJwtSetting());
+
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -36,11 +46,17 @@ builder.Services.AddAuthentication(options =>
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(authOptions.SecretKey)),
             ValidateIssuer = false,
-            ValidateAudience = false
+            ValidateAudience = false,
+            ValidIssuer = authOptions.Issuer,
+            ValidAudience = authOptions.Audience,
         };
     });
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromMinutes(Convert.ToInt32(authOptions.DurationInMinutes));
+});
 
 //Db register
 builder.Services.AddDbContext<ChatAppDbContext>(

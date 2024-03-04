@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using ChatAPI.Data;
+using ChatAPI.Data.Models;
 
 namespace ChatAPI.Startup.Services;
 
@@ -22,7 +23,7 @@ public class TokenService : ITokenService
 
     public string GenerateToken(Users user, IList<string> roles)
     {
-        var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JwtSettings:SecretKey"]));
+        var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["AuthenticationSettings:SecretKey"]!));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var claims = new List<Claim>
