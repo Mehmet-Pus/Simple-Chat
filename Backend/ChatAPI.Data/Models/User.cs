@@ -1,15 +1,13 @@
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace ChatAPI.Data.Models;
 
-public class Users : IdentityUser<int>
+public class User : IdentityUser<int>
 {
-    public Users()
+    public User()
     {
         DisplayName = default!;
     }
     
-    [MaxLength(20)]
     public string DisplayName { get; set; }
 }

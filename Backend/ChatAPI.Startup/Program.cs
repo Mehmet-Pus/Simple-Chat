@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 
 //Dependency Injection for AuthController and TokenService
 builder.Services.AddTransient<ITokenService, TokenService>();
-builder.Services.AddIdentity<Users, UserRole>()
+builder.Services.AddIdentity<User, UserRole>()
     .AddEntityFrameworkStores<ChatAppDbContext>()
     .AddDefaultTokenProviders();
 

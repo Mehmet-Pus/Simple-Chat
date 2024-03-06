@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChatAPI.Data;
 
-public class ChatAppDbContext : IdentityDbContext<Users, UserRole, int>
+public class ChatAppDbContext : IdentityDbContext<User, UserRole, int>
 {
     public DbSet<Message> Messages { get; set; }
     public DbSet<ChatRoom> ChatRooms { get; set; }
@@ -59,6 +59,10 @@ public class ChatAppDbContext : IdentityDbContext<Users, UserRole, int>
             .Property(x => x.IsOneToOneChat);
         modelBuilder.Entity<ChatRoom>()
             .HasMany<ChatRoomUser>(x => x.ChatRoomUsers);
+
+        modelBuilder.Entity<User>()
+            .Property(x => x.DisplayName)
+            .HasMaxLength(20);
             
         base.OnModelCreating(modelBuilder);
     }

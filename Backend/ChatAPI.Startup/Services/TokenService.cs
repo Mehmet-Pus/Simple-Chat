@@ -2,7 +2,6 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
-using ChatAPI.Data;
 using ChatAPI.Data.Models;
 
 namespace ChatAPI.Startup.Services;
@@ -10,7 +9,7 @@ namespace ChatAPI.Startup.Services;
 
 public interface ITokenService
 {
-    string GenerateToken(Users user, IList<string> roles);
+    string GenerateToken(User user, IList<string> roles);
 }
 public class TokenService : ITokenService
 {
@@ -21,10 +20,14 @@ public class TokenService : ITokenService
         _configuration = configuration;
     }
 
-    public string GenerateToken(Users user, IList<string> roles)
+    public string GenerateToken(User user, IList<string> roles)
     {
         var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["AuthenticationSettings:SecretKey"]!));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        if (string.IsNullOrWhiteSpace(user.UserName))
+            throw new Exception("Something happened, please contact with your administrator!");
+        
 
         var claims = new List<Claim>
         {

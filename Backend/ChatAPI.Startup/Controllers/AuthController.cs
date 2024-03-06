@@ -12,13 +12,13 @@ namespace ChatAPI.Startup.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
-    private readonly UserManager<Users> _userManager;
-    private readonly SignInManager<Users> _signInManager;
+    private readonly UserManager<User> _userManager;
+    private readonly SignInManager<User> _signInManager;
     private readonly ITokenService _tokenService;
 
     public AuthController(
-        UserManager<Users> userManager,
-        SignInManager<Users> signInManager,
+        UserManager<User> userManager,
+        SignInManager<User> signInManager,
         ITokenService tokenService)
     {
         _userManager = userManager;
@@ -47,7 +47,7 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterInputModel model)
     {
-        var appUser = new Users();
+        var appUser = new User();
         appUser.UserName = model.UserName;
         appUser.Email = model.Email;
         appUser.DisplayName = model.DisplayName;
