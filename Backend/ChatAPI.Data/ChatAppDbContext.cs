@@ -1,9 +1,10 @@
 using ChatAPI.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChatAPI.Data;
 
-public class ChatAppDbContext : DbContext
+public class ChatAppDbContext : IdentityDbContext<User, UserRole, int>
 {
     public DbSet<Message> Messages { get; set; }
     public DbSet<ChatRoom> ChatRooms { get; set; }
@@ -58,7 +59,10 @@ public class ChatAppDbContext : DbContext
             .Property(x => x.IsOneToOneChat);
         modelBuilder.Entity<ChatRoom>()
             .HasMany<ChatRoomUser>(x => x.ChatRoomUsers);
-            //.WithMany(x => x.User Sender will be implemented later);
+
+        modelBuilder.Entity<User>()
+            .Property(x => x.DisplayName)
+            .HasMaxLength(20);
             
         base.OnModelCreating(modelBuilder);
     }

@@ -16,5 +16,4 @@ public class ChatRoomUser : BaseEntity
     public string Description { get; set; }
     
     public ChatRoom ChatRoom { get; set; }
-    //public User Sender will be implemented along with auth 
 }
