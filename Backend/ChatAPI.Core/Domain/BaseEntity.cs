@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ChatAPI.Core.Domain;
+namespace ChatAPI.Core;
 
 public class BaseEntity
 {

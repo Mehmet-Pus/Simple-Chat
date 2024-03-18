@@ -1,5 +1,4 @@
 using ChatAPI.Core;
-using ChatAPI.Core.Domain;
 
 namespace ChatAPI.Data.Models;
 
